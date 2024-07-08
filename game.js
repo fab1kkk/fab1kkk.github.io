@@ -43,14 +43,14 @@ window.addEventListener('load', () => {
             if (this.map.cleared()) {
                 this.gameCompletedIn = Date.now() - this.gameStartedAt
                 if (this.gameCompletedIn < Cookies.get('fastFinish') || Cookies.get('fastFinish') == null) {
-                    Cookies.set('fastFinish', this.gameCompletedIn)
+                    Cookies.set('fastFinish', this.gameCompletedIn, { expires: 365 * 10 })
                 }
             }
 
             if (this.ball.hitBottom() || this.map.cleared()) {
                 this.gameOver = true;
-                if(this.ball.hitBottom()) this.handleGameOver('l');
-                if(this.map.cleared()) this.handleGameOver('w');
+                if (this.ball.hitBottom()) this.handleGameOver('l');
+                if (this.map.cleared()) this.handleGameOver('w');
                 return;
             }
             this.paddle.update(this.input.keys);
@@ -89,10 +89,10 @@ window.addEventListener('load', () => {
 
         observeRecords() {
             if (this.score > Cookies.get('highScore') || Cookies.get('highScore') == null) {
-                Cookies.set('highScore', this.score)
+                Cookies.set('highScore', this.score, { expires: 365 * 10 })
             }
             if (this.scoreMultiplier > Cookies.get('highCombo') || Cookies.get('highCombo') == null) {
-                Cookies.set('highCombo', this.scoreMultiplier)
+                Cookies.set('highCombo', this.scoreMultiplier, { expires: 365 * 10 })
             }
         }
 
@@ -131,7 +131,7 @@ window.addEventListener('load', () => {
                 gameOverElem.style.borderColor = color;
                 gameOverTextElem.style.color = color;
                 gameOverTextElem.innerHTML = text;
-                
+
                 document.addEventListener('keydown', event => {
                     if (this.gameOver && event.code === 'Space') {
                         this.reset();
