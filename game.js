@@ -89,10 +89,10 @@ window.addEventListener('load', () => {
 
         observeRecords() {
             if (this.score > Cookies.get('highScore') || Cookies.get('highScore') == null) {
-                Cookies.set('highScore', this.score, { expires: 365 * 10 })
+                Cookies.set('highScore', this.score, { expires: 365 })
             }
             if (this.scoreMultiplier > Cookies.get('highCombo') || Cookies.get('highCombo') == null) {
-                Cookies.set('highCombo', this.scoreMultiplier, { expires: 365 * 10 })
+                Cookies.set('highCombo', this.scoreMultiplier, { expires: 365 })
             }
         }
 
